@@ -28,6 +28,21 @@ func CacheInt32Create(keyget func(item interface{}) (key int32, err error)) (c *
 	return c
 }
 
+// Len - get len
+func (c *CacheInt32) Len() int {
+	return len(c.data)
+}
+
+// Keys - get len
+func (c *CacheInt32) Keys() []int32 {
+	res := make([]int32, len(c.data))
+	for k := range c.data {
+		res = append(res, k)
+	}
+
+	return res
+}
+
 // Append - append item into cache
 // if exists then delete befor
 func (c *CacheInt32) Append(item interface{}) (err error) {
