@@ -20,9 +20,10 @@ type CacheInt32 struct {
 }
 
 // CacheInt32Create create CacheInt32
-func CacheInt32Create() (c *CacheInt32) {
+func CacheInt32Create(keyget func(item interface{}) (key int32, err error)) (c *CacheInt32) {
 	c = &CacheInt32{
-		data: make(map[int32]interface{}),
+		data:   make(map[int32]interface{}),
+		KeyGet: keyget,
 	}
 	return c
 }
